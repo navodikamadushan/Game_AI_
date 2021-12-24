@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gameaiupdate/screens/signinpage.dart';
 import 'package:gameaiupdate/screens/register.dart';
-import 'package:animations/animations.dart';
 
 class Authenticate extends StatefulWidget {
   _AuthenticateState createState() => _AuthenticateState();
@@ -14,15 +13,11 @@ class _AuthenticateState extends State<Authenticate> {
   }
 
   @override
-  Widget build(BuildContext context) => PageTransitionSwitcher(
-        duration: Duration(milliseconds: 1000),
-        reverse: showSignIn,
-        transitionBuilder: (child, animation, secondaryAnimation) => SharedAxisTransition(
-          child: child,
-          animation: animation,
-          secondaryAnimation: secondaryAnimation,
-          transitionType: SharedAxisTransitionType.horizontal,
-        ),
-        child: showSignIn ? SignInPage(toggleView: toggleView) : Register(toggleView: toggleView),
-      );
+  Widget build(BuildContext context) {
+    if (showSignIn) {
+      return SignInPage(toggleView: toggleView);
+    } else {
+      return Register(toggleView: toggleView);
+    }
+  }
 }

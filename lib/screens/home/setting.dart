@@ -195,18 +195,7 @@ class _SettingPage extends State<SettingPage> {
                   child: ListTile(
                     leading: Icon(Icons.lock),
                     title: Text('මුරපදය වෙනස් කරන්න'),
-                    onTap: () async {
-                      print(_auth.returnExactFirebaseUser().email);
-                      _auth.sendPasswordResettoEmail(_auth.returnExactFirebaseUser().email);
-                      _alertService.singleButtonAlert(context, 'සැකසීම සඳහා ඇඟවීම', 'ඔබගේ මුරපදය යළි පිහිටුවීම සඳහා ${_auth.returnExactFirebaseUser().email} වෙත විද්‍යුත් තැපෑලක් යවන ලදී');
-                      /*_alertService.forgotPassWord(context).then((onValue) {
-                        print(onValue);
-                        if (onValue != null) {
-                          _auth.sendPasswordResettoEmail(onValue);
-                          _alertService.singleButtonAlert(context, 'පුරනය සඳහා ඇඟවීම', 'ඔබගේ මුරපදය යළි පිහිටුවීම සඳහා ${onValue} වෙත විද්‍යුත් තැපෑලක් යවන ලදී');
-                        }
-                      });*/
-                    },
+                    onTap: () {},
                   ),
                 ),
                 Card(

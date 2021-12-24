@@ -78,12 +78,6 @@ class AuthService {
     }
   }
 
-  //send password reset to email
-
-  Future<void> sendPasswordResettoEmail(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
-  }
-
   // get current user
   Future getCurrentUser() async {
     try {

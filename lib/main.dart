@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gameaiupdate/shared/splash.dart';
+//import 'package:gameaiupdate/screens/signinpage.dart';
 import 'package:gameaiupdate/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import "package:gameaiupdate/services/auth.dart";
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           dividerColor: Colors.black,
         ),
         home: AnimatedSplashScreen(
-          splash: Splash(),
+          splash: Icons.school_sharp,
           duration: 3000,
           splashTransition: SplashTransition.scaleTransition,
           backgroundColor: Colors.purple[100],
