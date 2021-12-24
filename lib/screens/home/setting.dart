@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 import "package:gameaiupdate/services/auth.dart";
 import "package:gameaiupdate/services/email.dart";
-import "package:gameaiupdate/models/user.dart";
-////import "package:gameaiupdate/services/smsservice.dart";
 import "package:gameaiupdate/services/alert.dart";
-import "package:gameaiupdate/services/database.dart";
 import "package:gameaiupdate/shared/constant.dart";
 import "package:gameaiupdate/shared/loading.dart";
 import "package:gameaiupdate/screens/authenticate.dart";
 import 'package:gameaiupdate/screens/signinpage.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import "package:gameaiupdate/models/profileuser.dart";
 
 class SettingPage extends StatefulWidget {
   BuildContext profile_context;
-  ProUser myuser;
   //SettingPage({this.context});
-  SettingPage(BuildContext context, ProUser myuser) {
+  SettingPage(BuildContext context) {
     this.profile_context = context;
-    this.myuser = myuser;
   }
   @override
   _SettingPage createState() => _SettingPage();
@@ -27,12 +21,8 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPage extends State<SettingPage> {
   bool loading = false;
-  bool isPhoneNoChanged = false;
-  String phoneno = '';
   final AuthService _auth = AuthService();
   final EmailService _email = EmailService();
-  final DatabaseService _database = DatabaseService();
-  ////final SmsService _sms = SmsService();
   Timer timer;
   User user;
   bool isEmailVerified;
@@ -56,7 +46,6 @@ class _SettingPage extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     final AlertService _alertService = AlertService();
-    phoneno = isPhoneNoChanged ? phoneno : widget.myuser.phoneno;
     return loading
         ? Loading()
         : Scaffold(
@@ -81,44 +70,7 @@ class _SettingPage extends State<SettingPage> {
                   child: ListTile(
                     leading: Icon(Icons.local_phone),
                     title: Text('දුරකතන අංකය'),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Text(
-                            phoneno,
-                            style: TextStyle(
-                              //fontWeight: FontWeight.bold,
-                              color: Colors.black.withOpacity(0.8),
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.chevron_right,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      _alertService.addMobileNumberAlert(context).then((onValue) async {
-                        print(onValue);
-                        if (onValue != null) {
-                          setState(() => phoneno = onValue);
-                          setState(() => isPhoneNoChanged = true);
-                          print(widget.myuser.phoneno);
-                          setState(() => loading = true);
-                          dynamic currentUserId = await _auth.getCurrentUser();
-                          dynamic result = await _database.updatePhoneNumbertoUserProfile(currentUserId.uid, onValue);
-                          if (result == null) {
-                            setState(() => loading = false);
-                            print('null');
-                          } else {
-                            print('not null');
-                          }
-                        }
-                      });
-                    },
+                    onTap: () {},
                   ),
                 ),
                 Card(
@@ -153,24 +105,16 @@ class _SettingPage extends State<SettingPage> {
                   child: ListTile(
                     leading: Icon(Icons.logout),
                     title: Text('වරන්න'),
-                    onTap: () {
-                      _alertService.signOutAlert(context).then((onValue) async {
-                        if (onValue) {
-                          print('true!');
-                          setState(() => loading = true);
-                          dynamic signoutresult = await _auth.signOut();
-                          // print(signoutresult.toString());
-                          if (signoutresult == null) {
-                            Navigator.pop(widget.profile_context);
-                            Navigator.pop(context);
-                            setState(() => loading = false);
-                            print('signing out!');
-                          }
-                        } else {
-                          print('false!');
-                        }
-                      });
-
+                    onTap: () async {
+                      setState(() => loading = true);
+                      dynamic signoutresult = await _auth.signOut();
+                      // print(signoutresult.toString());
+                      if (signoutresult == null) {
+                        Navigator.pop(widget.profile_context);
+                        Navigator.pop(context);
+                        setState(() => loading = false);
+                        print('signing out!');
+                      }
                       // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => SignInPage()), (Route<dynamic> route) => false);
                     },
                   ),
@@ -195,18 +139,7 @@ class _SettingPage extends State<SettingPage> {
                   child: ListTile(
                     leading: Icon(Icons.lock),
                     title: Text('මුරපදය වෙනස් කරන්න'),
-                    onTap: () async {
-                      print(_auth.returnExactFirebaseUser().email);
-                      _auth.sendPasswordResettoEmail(_auth.returnExactFirebaseUser().email);
-                      _alertService.singleButtonAlert(context, 'සැකසීම සඳහා ඇඟවීම', 'ඔබගේ මුරපදය යළි පිහිටුවීම සඳහා ${_auth.returnExactFirebaseUser().email} වෙත විද්‍යුත් තැපෑලක් යවන ලදී');
-                      /*_alertService.forgotPassWord(context).then((onValue) {
-                        print(onValue);
-                        if (onValue != null) {
-                          _auth.sendPasswordResettoEmail(onValue);
-                          _alertService.singleButtonAlert(context, 'පුරනය සඳහා ඇඟවීම', 'ඔබගේ මුරපදය යළි පිහිටුවීම සඳහා ${onValue} වෙත විද්‍යුත් තැපෑලක් යවන ලදී');
-                        }
-                      });*/
-                    },
+                    onTap: () {},
                   ),
                 ),
                 Card(

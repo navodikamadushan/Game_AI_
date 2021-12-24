@@ -61,7 +61,7 @@ class AuthService {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
-      await DatabaseService().addUserProfileData(user.uid, '', email, '', '');
+      await DatabaseService().updateUserProfileData(user.uid, '', email, '');
       return [
         _userFromFirebaseUser(user),
         null
@@ -76,12 +76,6 @@ class AuthService {
         s.toString()
       ];
     }
-  }
-
-  //send password reset to email
-
-  Future<void> sendPasswordResettoEmail(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
   }
 
   // get current user

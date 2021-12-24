@@ -21,29 +21,12 @@ class DatabaseService {
     });
   }
 
-  // add user details to user document
-  Future addUserProfileData(String currentUserId, String name, String email, String phoneno, String about) async {
+  // store to user document
+  Future updateUserProfileData(String currentUserId, String name, String email, String about) async {
     return await users.doc(currentUserId).set({
       'name': name,
       'email': email,
-      'phoneno': phoneno,
       'about': about,
-    });
-  }
-
-  // update to user document
-  Future updateUserProfileData(String currentUserId, String name, String email, String about) async {
-    return await users.doc(currentUserId).update({
-      'name': name,
-      'email': email,
-      'about': about,
-    });
-  }
-
-  // store phone number to user document
-  Future updatePhoneNumbertoUserProfile(String currentUserId, String phonenumber) async {
-    return await users.doc(currentUserId).update({
-      'phoneno': phonenumber,
     });
   }
 

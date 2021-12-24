@@ -3,7 +3,6 @@ class ProUser {
   final String name;
   final String email;
   final String about;
-  final String phoneno;
   final bool isDarkMode;
 
   ProUser({
@@ -11,7 +10,6 @@ class ProUser {
     this.name,
     this.email,
     this.about,
-    this.phoneno,
     this.isDarkMode,
   });
 }

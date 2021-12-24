@@ -6,7 +6,6 @@ import "package:gameaiupdate/services/translate.dart";
 import "package:gameaiupdate/services/deviceinfo.dart";
 import "package:gameaiupdate/services/database.dart";
 import 'package:device_info_plus/device_info_plus.dart';
-import "package:gameaiupdate/services/alert.dart";
 
 class SignInPage extends StatefulWidget {
   final Function toggleView;
@@ -22,7 +21,6 @@ class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
   final TranslateService _trans = TranslateService();
   final DeviceInfoService _deviceInfo = DeviceInfoService();
-  final AlertService _alertService = AlertService();
 
   // text field State
   String email = '';
@@ -42,11 +40,7 @@ class _SignInPageState extends State<SignInPage> {
         ? Loading()
         : Scaffold(
             appBar: AppBar(
-              title: Text('පුරන්න',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
+              title: Text('පුරන්න'),
               flexibleSpace: Image.asset(
                 "assets/appbar_image.png",
                 fit: BoxFit.cover,
@@ -55,17 +49,8 @@ class _SignInPageState extends State<SignInPage> {
               elevation: 10,
               actions: <Widget>[
                 FlatButton.icon(
-                    icon: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      reg,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                    icon: Icon(Icons.person),
+                    label: Text(reg),
                     onPressed: () {
                       widget.toggleView();
                     }),
@@ -77,32 +62,16 @@ class _SignInPageState extends State<SignInPage> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 50.0),
-                    Container(
-                      child: Transform.scale(
-                        scale: 3.5,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: new Image.asset("assets/school_icon.png"),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 50.0),
+                    SizedBox(height: 20.0),
                     TextFormField(
-                        decoration: textInputDecoration.copyWith(
-                          hintText: 'විද්‍යුත් තැපෑල',
-                          prefixIcon: Icon(Icons.email_outlined),
-                        ),
+                        decoration: textInputDecoration.copyWith(hintText: 'විද්‍යුත් තැපෑල'),
                         validator: (val) => val.isEmpty ? 'විද්‍යුත් තැපැල් ගිණුමක් ඇතුලත් කරන්න' : null,
                         onChanged: (val) {
                           setState(() => email = val);
                         }),
                     SizedBox(height: 20.0),
                     TextFormField(
-                        decoration: textInputDecoration.copyWith(
-                          hintText: 'මුර පදය',
-                          prefixIcon: Icon(Icons.lock_outline),
-                        ),
+                        decoration: textInputDecoration.copyWith(hintText: 'මුර පදය'),
                         obscureText: true,
                         validator: (val) => val.length < 5 ? 'අක්ෂර 5කට වඩා ඇතුලත් කරන්න' : null,
                         onChanged: (val) {
@@ -130,26 +99,9 @@ class _SignInPageState extends State<SignInPage> {
                             }
                           }
                         }),
-                    SizedBox(height: 10.0),
-                    TextButton(
-                      child: Text('මුරපදය අමතක වුණා ද?'),
-                      onPressed: () async {
-                        print('reset password!');
-                        _alertService.forgotPassWord(context).then((onValue) {
-                          print(onValue);
-                          if (onValue != null) {
-                            _auth.sendPasswordResettoEmail(onValue);
-                            _alertService.singleButtonAlert(context, 'පුරනය සඳහා ඇඟවීම', 'ඔබගේ මුරපදය යළි පිහිටුවීම සඳහා ${onValue} වෙත විද්‍යුත් තැපෑලක් යවන ලදී');
-                          }
-                        });
-                      },
-                    ),
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     RaisedButton(
-                        child: Text(
-                          'ආගන්තුකයෙකු ලෙස පුරනය වන්න',
-                          textAlign: TextAlign.center,
-                        ),
+                        child: Text('ආගන්තුකයෙකු ලෙස පුරනය වන්න'),
                         onPressed: () async {
                           setState(() => loading = true);
                           dynamic result = await _auth.signInAnon();
