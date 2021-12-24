@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "172247957594",
+    "project_id": "gameai-8287a",
+    "storage_bucket": "gameai-8287a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172247957594:android:3395783fb337757979d863",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172247957594-rs26fguoipr72q8hvlh536l4m2tsfrt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5a1CVdnF7uybgJCVEvVC4VyZRrFBSzCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172247957594-rs26fguoipr72q8hvlh536l4m2tsfrt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172247957594:android:b9c251fabdad3c8379d863",
+        "android_client_info": {
+          "package_name": "com.example.gameaiupdate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172247957594-rs26fguoipr72q8hvlh536l4m2tsfrt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5a1CVdnF7uybgJCVEvVC4VyZRrFBSzCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172247957594-rs26fguoipr72q8hvlh536l4m2tsfrt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
