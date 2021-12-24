@@ -30,11 +30,7 @@ class _RegisterState extends State<Register> {
         ? Loading()
         : Scaffold(
             appBar: AppBar(
-              title: Text('ලියාපදිංචි වන්න',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
+              title: Text('ලියාපදිංචි වන්න'),
               flexibleSpace: Image.asset(
                 "assets/appbar_image.png",
                 fit: BoxFit.cover,
@@ -43,17 +39,8 @@ class _RegisterState extends State<Register> {
               elevation: 10,
               actions: <Widget>[
                 FlatButton.icon(
-                    icon: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'පුරන්න',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                    icon: Icon(Icons.person),
+                    label: Text('පුරන්න'),
                     onPressed: () {
                       widget.toggleView();
                     }),
@@ -65,32 +52,16 @@ class _RegisterState extends State<Register> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 50.0),
-                    Container(
-                      child: Transform.scale(
-                        scale: 3.5,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: new Image.asset("assets/school_icon.png"),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 50.0),
+                    SizedBox(height: 20.0),
                     TextFormField(
-                        decoration: textInputDecoration.copyWith(
-                          hintText: 'විද්‍යුත් තැපෑල',
-                          prefixIcon: Icon(Icons.email_outlined),
-                        ),
+                        decoration: textInputDecoration.copyWith(hintText: 'විද්‍යුත් තැපෑල'),
                         validator: (val) => val.isEmpty ? 'විද්‍යුත් තැපැල් ගිණුමක් ඇතුලත් කරන්න' : null,
                         onChanged: (val) {
                           setState(() => email = val);
                         }),
                     SizedBox(height: 20.0),
                     TextFormField(
-                        decoration: textInputDecoration.copyWith(
-                          hintText: 'මුර පදය',
-                          prefixIcon: Icon(Icons.lock_outline),
-                        ),
+                        decoration: textInputDecoration.copyWith(hintText: 'මුර පදය'),
                         obscureText: true,
                         validator: (val) => val.length < 5 ? 'අක්ෂර 5කට වඩා ඇතුලත් කරන්න' : null,
                         onChanged: (val) {

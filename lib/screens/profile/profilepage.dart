@@ -36,11 +36,10 @@ class _ProfilePageState extends State<ProfilePage> {
             name: snapshot.data['name'],
             email: snapshot.data['email'],
             about: snapshot.data['about'],
-            phoneno: snapshot.data['phoneno'],
             isDarkMode: false,
           );
           return Scaffold(
-            appBar: buildAppBar(context, isEditProfile, myuser),
+            appBar: buildAppBar(context, isEditProfile),
             backgroundColor: Colors.white,
             body: ListView(
               physics: BouncingScrollPhysics(),

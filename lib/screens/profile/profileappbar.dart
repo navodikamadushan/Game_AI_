@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gameaiupdate/screens/home/setting.dart';
-import "package:gameaiupdate/models/profileuser.dart";
 //import 'package:gameaiupdate/screens/emailverify.dart';
 
-AppBar buildAppBar(BuildContext prof_context, bool isEditProfile, ProUser myuser) {
+AppBar buildAppBar(BuildContext prof_context, bool isEditProfile) {
   final icon = Icons.nights_stay_sharp;
   return AppBar(
     iconTheme: IconThemeData(
@@ -20,7 +19,7 @@ AppBar buildAppBar(BuildContext prof_context, bool isEditProfile, ProUser myuser
               icon: Icon(Icons.settings, color: Colors.black),
               onPressed: () {
                 Navigator.of(prof_context).push(
-                  MaterialPageRoute(builder: (context) => SettingPage(prof_context, myuser)),
+                  MaterialPageRoute(builder: (context) => SettingPage(prof_context)),
                   //MaterialPageRoute(builder: (context) => LoginScreen()),
                 );
               },
