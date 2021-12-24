@@ -34,7 +34,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) => loading
       ? Loading()
       : Scaffold(
-          appBar: buildAppBar(context, isEditProfile, widget.user),
+          appBar: buildAppBar(context, isEditProfile),
           body: Form(
             key: _formKey,
             child: ListView(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import "package:gameaiupdate/shared/constant.dart";
 
 class AlertService {
@@ -82,7 +81,6 @@ class AlertService {
 
   Future<String> addMobileNumberAlert(BuildContext context) {
     String selectedCountryCode = '+94';
-    final maskFormatter = MaskTextInputFormatter(mask: '(##) ### ####');
     TextEditingController customController = TextEditingController();
     return showDialog(
       context: context,
@@ -115,13 +113,12 @@ class AlertService {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 0, top: 0),
                         child: Container(
-                          width: 120.0,
+                          width: 100.0,
                           height: 40.0,
                           child: TextField(
-                            inputFormatters: [
-                              maskFormatter
-                            ],
-                            decoration: textInputDecoration.copyWith(hintText: '(##) ### ####', contentPadding: EdgeInsets.all(10.0)),
+                            //textAlign: TextAlign.center,
+                            decoration: textInputDecoration.copyWith(hintText: 'xxxxxxxxx', contentPadding: EdgeInsets.all(10.0)),
+
                             keyboardType: TextInputType.number,
                             controller: customController,
                           ),
@@ -141,75 +138,12 @@ class AlertService {
               ),
               onPressed: () async {
                 Navigator.of(context).pop(selectedCountryCode + customController.text.toString());
-                //Navigator.of(context).pop(customController.text.trim());
               },
             ),
             TextButton(
               child: const Text('අවලංගු කරන්න'),
               onPressed: () async {
-                Navigator.of(context).pop(null);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<String> forgotPassWord(BuildContext context) {
-    String selectedCountryCode = '+94';
-    final maskFormatter = MaskTextInputFormatter(mask: '(##) ### ####');
-    TextEditingController customController = TextEditingController();
-    return showDialog(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            'පුරනය සඳහා ඇඟවීම',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('කරුණාකර ඔබගේ විද්‍යුත් තැපැල් ලිපිනය ඇතුලත් කරන්න'),
-                SizedBox(height: 20.0),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 0, top: 0),
-                        child: Container(
-                          // width: 120.0,
-                          height: 40.0,
-                          child: TextField(
-                            decoration: textInputDecoration.copyWith(hintText: 'විද්යුත් තැපැල් ලිපිනය', contentPadding: EdgeInsets.all(10.0)),
-                            controller: customController,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text(
-                'ඉල්ලීම',
-                // style: TextStyle(backgroundColor: Colors.grey),
-              ),
-              onPressed: () async {
-                //Navigator.of(context).pop(selectedCountryCode + customController.text.toString());
-                Navigator.of(context).pop(customController.text.trim());
-              },
-            ),
-            TextButton(
-              child: const Text('අවලංගු කරන්න'),
-              onPressed: () async {
-                Navigator.of(context).pop(null);
+                Navigator.of(context).pop();
               },
             ),
           ],
